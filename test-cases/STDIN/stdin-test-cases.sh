@@ -13,5 +13,8 @@ cat issue-493.tex| latexindent.pl -s -m -l issue-493a.yaml -o=issue-493-mod3 -
 cat issue-528.tex| latexindent.pl -s -o=issue-528-mod1 -
 cat 713971.tex| latexindent.pl -s -o=713971-mod1 -
 
+# - followed by a file name: only STDIN is read for -, then the file is read
+cat myfile.tex| latexindent.pl - 713971.tex > stdin-dash.txt
+
 set +x 
 wrapuptasks
