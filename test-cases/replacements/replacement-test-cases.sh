@@ -49,6 +49,10 @@ latexindent.pl -s -rv test10.tex -l=replace14.yaml -o=+-rv-mod14
 latexindent.pl -s -r test12.tex -l=replace19.yaml,../specials/special-verb1.yaml -o=+-mod19
 latexindent.pl -s -rv test12.tex -l=replace19.yaml,../specials/special-verb1.yaml -o=+-rv-mod19
 
+# a replacement that destroys a verbatim placeholder gives a warning, and must not hang
+timeout 60 latexindent.pl -s -rv verbatim-placeholder.tex -l=verbatim-placeholder.yaml -o=+-mod1
+egrep 'not found in body' indent.log > verbatim-placeholder.txt
+
 # strip preamble
 latexindent.pl -s -r test11.tex -l=replace18.yaml -o=+-mod18
 
