@@ -27,6 +27,9 @@ latexindent.pl -s cmh1.tex lines*.tex -g fatal-file-no-read.log
 
 latexindent.pl -l documentation.yaml -rv -w -m -s -g not-working.log doc*.tex
 
+# verbatim specialBeginEnd entries are honoured in every file of a batch
+latexindent.pl -s -l=verbatim-special.yaml verbatim-special1.tex verbatim-special2.tex -o=+-mod1 -g verbatim-special.log
+
 # local settings found with default name (friend #1)
 latexindent.pl -s -l local-settings-friend-1/mwe.tex
 cat local-settings-friend-1/indent.log | grep "WARN:  yaml" > local-settings-friend-1/warnings.txt
