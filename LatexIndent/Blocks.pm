@@ -359,6 +359,7 @@ sub _construct_code_blocks_regex {
                   (?>                                             #    prevent backtracking
                     (                                             # $3 name
                       (?<COMMAND>
+                        (?!(?:$environmentRegEx))
                         \\                                        # $4 command
                         (?<COMMANDNAME>
                           $commandName
