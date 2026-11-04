@@ -143,8 +143,12 @@ sub file_extension_check {
         $strippedFileExtension =~ s/\.//;
         $strippedFileExtension = "tex" if ( $strippedFileExtension eq "" );
 
-        # grab the name, directory, and extension of the output file
-        my ( $name, $dir, $ext ) = fileparse( ${$self}{outputToFile}, $strippedFileExtension );
+        # grab the extension of the output file, if any, from the -o value itself, as
+        # with -o=+... the name of the file to be operated upon may contain a dot
+        my $ext = ( fileparse( $switch{outputToFile}, qr/\..[^.]*$/ ) )[2];
+
+        # grab the name and directory of the output file
+        my ( $name, $dir ) = fileparse( ${$self}{outputToFile}, quotemeta($ext) );
 
         # if there is no extension, then add the extension from the file to be operated upon
         if ( !$ext ) {
@@ -162,13 +166,14 @@ sub file_extension_check {
             $logger->info("-o switch called with file name ending with ++: ${$self}{outputToFile}");
             $name =~ s/\+\+$//;
             $name = ${$self}{baseName} if ( $name eq "" );
+            $ext  = "." . $strippedFileExtension if ( !$ext );
             my $outputFileCounter = 0;
-            my $fileName          = $name . $outputFileCounter . "." . $strippedFileExtension;
+            my $fileName          = $name . $outputFileCounter . $ext;
             $logger->info("will search for existence and increment counter, starting with $fileName");
             while ( exist_with_encode($fileName) ) {
                 $logger->info("$fileName exists, incrementing counter");
                 $outputFileCounter++;
-                $fileName = $name . $outputFileCounter . "." . $strippedFileExtension;
+                $fileName = $name . $outputFileCounter . $ext;
             }
             $logger->info("$fileName does not exist, and will be the output file");
             ${$self}{outputToFile} = $fileName;
