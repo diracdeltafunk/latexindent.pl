@@ -315,6 +315,7 @@ sub find_verbatim_commands {
         my $verbatimRegExp = qr/
                         (
                             \\($verbCommandSpec) # name of command into $2
+                            \*?                  # possibly starred, as in \verb*
                             \h*
                         )
                         (
