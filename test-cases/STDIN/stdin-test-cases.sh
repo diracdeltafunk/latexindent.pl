@@ -13,5 +13,9 @@ cat issue-493.tex| latexindent.pl -s -m -l issue-493a.yaml -o=issue-493-mod3 -
 cat issue-528.tex| latexindent.pl -s -o=issue-528-mod1 -
 cat 713971.tex| latexindent.pl -s -o=713971-mod1 -
 
+# -w and -wd need a file to overwrite, so they are rejected for STDIN
+cat myfile.tex| latexindent.pl -s -w > stdin-overwrite.txt
+cat myfile.tex| latexindent.pl -s -wd >> stdin-overwrite.txt
+
 set +x 
 wrapuptasks
