@@ -10,5 +10,9 @@ do
    set +x
 done
 keepappendinglogfile
+
+# a misspelt switch is an error (exit code 8), and no indentation is done
+latexindent.pl --chek -s verbatim1.tex > unknown-switch.txt 2>&1
+echo "exit code: $?" >> unknown-switch.txt
 set +x 
 wrapuptasks

@@ -583,6 +583,7 @@ then ``latexindent.pl`` can exit with the exit codes given in :numref:`tab:exit-
    4         no          failure, myfile.tex exists but cannot be read
    5         no          failure, ``-w`` active, and back-up file cannot be written
    6         no          failure, ``-c`` active, and cruft directory could not be created
+   8         no          failure, unknown switch, or switch given without its value
    ========= =========== ==============================================================================
 
 .. container:: references hanging-indent
