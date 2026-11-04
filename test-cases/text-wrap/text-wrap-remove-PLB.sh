@@ -296,5 +296,9 @@ latexindent.pl -s -l sec-intro -m sec-intro -o=+-mod1
 
 latexindent.pl -s -l issue-659.yaml issue-659.tex -o=+-mod1
 
+# capture groups in user blocksEndBefore and blocksFollow patterns
+latexindent.pl -s -m -l tw-capture-group1 tw-capture-group -o=+-mod1
+latexindent.pl -s -m -l tw-capture-group2 tw-capture-group -o=+-mod2
+
 set +x 
 wrapuptasks
